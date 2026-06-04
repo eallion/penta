@@ -1,0 +1,10 @@
+{
+  "name": "penta",
+  "version": "1.0.0",
+  "entry": ".",
+  "functions": {
+    "edge": {
+      "entry": "edge-functions"
+    }
+  }
+}
