@@ -1,0 +1,7 @@
+# Tencent Cloud EdgeOne
+.env
+.edgeone/*
+.tef_dist/*
+data/
+docs/
+screenshot/

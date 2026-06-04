@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penta Gallery</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="turnstile-overlay">
+    <div class="turnstile-box">
+      <h2>Verify you are human</h2>
+      <div id="turnstile-widget"></div>
+      <p>This helps protect the gallery from bots</p>
+    </div>
+  </div>
+
+  <div id="gallery-content">
+  <header>
+    <h1>LOL Penta</h1>
+    <p class="subtitle">LOL Penta Kill Collection since TGP (WeGame) launched</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="filters" id="filters">
+    <select id="filterYear"><option value="">Year</option></select>
+    <select id="filterChampion"><option value="">Champion</option></select>
+    <select id="filterMap"><option value="">Map</option></select>
+    <select id="filterSort">
+      <option value="desc">Newest</option>
+      <option value="asc">Oldest</option>
+    </select>
+    <button id="toggleLarge" class="filter-btn" title="Large view">&#x26F6;</button>
+  </div>
+
+  <main class="gallery" id="gallery">
+    <div class="loading">Loading...</div>
+  </main>
+  <div id="sentinel" style="text-align:center;padding:24px;color:#666;display:none">Loading more...</div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-info" id="lightboxInfo"></div>
+  </div>
+
+  </div>
+
+  <script src="/js/gallery.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>

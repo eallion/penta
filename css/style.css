@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#turnstile-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s;
+}
+
+#turnstile-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.turnstile-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.turnstile-box h2 {
+  margin-bottom: 24px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.turnstile-box p {
+  margin-top: 16px;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.turnstile-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.turnstile-retry {
+  margin-top: 16px;
+  background: #333;
+  border: 1px solid #555;
+  color: #e0e0e0;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.turnstile-retry:hover {
+  background: #444;
+}
+
+body {
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+header .subtitle {
+  color: #888;
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+header .stats {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+header .stats span {
+  background: #1a1a1a;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.filters {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filters select, .filters .filter-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filters select:focus { outline: none; border-color: #555; }
+
+.filters .filter-btn {
+  padding: 6px 14px;
+  background: #1a1a1a;
+  transition: background 0.2s;
+}
+
+.filters .filter-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.gallery.large {
+  grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+}
+
+.card {
+  position: relative;
+  background: #141414;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #1a1a1a;
+}
+
+.card .info {
+  padding: 12px 16px;
+}
+
+.card .avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.card .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.card .info .champion {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.card .info .title {
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: 1px;
+}
+
+.card .info .date {
+  margin-left: auto;
+  color: #666;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.card.no-img img:first-child {
+  display: none;
+}
+
+.card.no-img .info {
+  padding-top: 20px;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.lightbox .lightbox-info {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 48px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 48px;
+  color: #ff4444;
+}
+
+@media (max-width: 720px) {
+  .gallery { padding: 0 12px 24px; }
+}
+@media (max-width: 440px) {
+  header h1 { font-size: 1.5rem; }
+}
